@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+
+  contactmanagerdb:
+    container_name: contactmanagerdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=Contactmanagerdb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_matelso_data:/var/lib/postgresql/data/
