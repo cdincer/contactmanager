@@ -26,10 +26,12 @@ namespace matelso.contactmanager.Repository
 
             var affected =
                 await connection.ExecuteAsync
-                    (@"INSERT INTO Contact (Id, Salutation, Firstname , Lastname , Displayname,
-                       Birthdate, CreationTimestamp, LastChangeTimestamp, NotifyHasBirthdaySoon, Email, Phonenumber)
-                    VALUES (@Id, @Salutation, @Firstname , @Lastname , @Displayname, @Birthdate,
-                    @CreationTimestamp, @LastChangeTimestamp, @NotifyHasBirthdaySoon, @Email, @Phonenumber)",
+                    (@"INSERT INTO Contact (Id, Salutation, Firstname , Lastname , 
+                    Displayname, Birthdate, CreationTimestamp, LastChangeTimestamp, 
+                    NotifyHasBirthdaySoon, Email, Phonenumber)
+                    VALUES (@Id, @Salutation, @Firstname , @Lastname , 
+                    @Displayname, @Birthdate, @CreationTimestamp, @LastChangeTimestamp, 
+                    @NotifyHasBirthdaySoon, @Email, @Phonenumber)",
                             new
                             {
                                 id = entity.Id,
@@ -122,11 +124,11 @@ namespace matelso.contactmanager.Repository
 
             var affected =
                 await connection.ExecuteAsync
-                    (@"UPDATE Contact SET Salutation = @Salutation, 
-                      Firstname =  @Firstname, Lastname = @Lastname , Displayname = @Displayname,
-                      Birthdate = @Birthdate, NotifyHasBirthdaySoon= @NotifyHasBirthdaySoon, Email = @Email,Phonenumber = @Phonenumber,
-                      LastChangeTimestamp = @LastChangeTimestamp
-                      WHERE Id = @Id",
+                    (@"UPDATE Contact SET Salutation = @Salutation, Firstname =  @Firstname, 
+                    Lastname = @Lastname , Displayname = @Displayname, Birthdate = @Birthdate, 
+                    NotifyHasBirthdaySoon= @NotifyHasBirthdaySoon, Email = @Email,
+                    Phonenumber = @Phonenumber, LastChangeTimestamp = @LastChangeTimestamp
+                    WHERE Id = @Id",
                             new
                             {
                                 Salutation = entity.GetSalutation(),

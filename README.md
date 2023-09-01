@@ -23,8 +23,8 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
   "salutation": "Mrs",
   "firstname": "TestFirstName2",
   "lastname": "TestLastName2",
-  "email": "working@email.com",
+  "email": "working2@email.com",
   "displayname": "",
-  "birthddate": "1999-09-14T10:47:24.285Z",
+  "birthddate": "1998-09-12T10:47:24.285Z",
   "phoneNumber": ""
 }
