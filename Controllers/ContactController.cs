@@ -41,4 +41,22 @@ public class ContactController : ControllerBase
     {
         return await _repository.GetAsync(guid);
     }
+
+    [HttpPut]
+    public async Task UpdateUser(UpdateUserDto userDto)
+    {
+        Contact newContact = new(
+         userDto.Salutation,
+         userDto.Firstname,
+         userDto.Lastname,
+         userDto.Email,
+         userDto.Displayname,
+         userDto.Birthdate,
+         userDto.Phonenumber);
+        newContact.Id = userDto.Id;
+        await _repository.UpdateAsync(newContact);
+    }
+
+
+
 }
