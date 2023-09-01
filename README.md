@@ -4,7 +4,7 @@ https://localhost:7197/swagger/index.html
 ## For  setting enviroment up
 Just right click on docker-compose file and do docker-compose up with 
 VS Code Docker extension. Everything else needed is taken care by ServiceExtensions.cs
-It will build a table , insert 3 records in it for example
+It will drop if there is a existing table, create a new one and insert 3 records in it.
 
 
 ## Project summary
@@ -43,7 +43,7 @@ I picked this instead of setting up a BackgroundWorker operation to keep everyth
 
 //Test Scenario for DisplayName</br>
 {
-  "salutation": "Mrs",
+  "salutation": "Mr",
   "firstname": "TestFirstName2",
   "lastname": "TestLastName2",
   "email": "working2@email.com",
