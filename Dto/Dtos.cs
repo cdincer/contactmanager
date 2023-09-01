@@ -19,7 +19,8 @@ namespace matelso.contactmanager.Dto
     string Lastname,
     string Displayname,
     DateTime Birthdate,
-    DateTime Creationtimestamp,
+    DateTime CreationTimestamp,
+    DateTime LastChangeTimestamp,
     bool Notifyhasbirthdaysoon,
     string Email,
     string Phonenumber
@@ -32,7 +33,8 @@ namespace matelso.contactmanager.Dto
     string Lastname,
     string Displayname,
     DateTime Birthdate,
-    DateTime Creationtimestamp,
+    DateTime CreationTimestamp,
+    DateTime LastChangeTimestamp,
     string Email,
     string Phonenumber
 )

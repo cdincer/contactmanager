@@ -26,10 +26,10 @@ namespace matelso.contactmanager.Repository
 
             var affected =
                 await connection.ExecuteAsync
-                    ("INSERT INTO Contact (Id,Salutation, Firstname , Lastname , Displayname,"
-                                        + "Birthdate,CreationTimestamp,NotifyHasBirthdaySoon,Email,Phonenumber)"
-                    + "VALUES (@Id,@Salutation, @Firstname , @Lastname ,@Displayname,@Birthdate,"
-                    + "@CreationTimestamp, @NotifyHasBirthdaySoon,@Email,@Phonenumber)",
+                    (@"INSERT INTO Contact (Id, Salutation, Firstname , Lastname , Displayname,
+                       Birthdate, CreationTimestamp, LastChangeTimestamp, NotifyHasBirthdaySoon, Email, Phonenumber)
+                    VALUES (@Id, @Salutation, @Firstname , @Lastname , @Displayname, @Birthdate,
+                    @CreationTimestamp, @LastChangeTimestamp, @NotifyHasBirthdaySoon, @Email, @Phonenumber)",
                             new
                             {
                                 id = entity.Id,
@@ -39,12 +39,12 @@ namespace matelso.contactmanager.Repository
                                 Displayname = entity.GetDisplayName(),
                                 Birthdate = entity.GetBirthDate(),
                                 CreationTimestamp = entity.GetCreationTimeStamp(),
+                                LastChangeTimestamp = entity.GetLastChangeTimestamp(),
                                 NotifyHasBirthdaySoon = entity.GetNotifyHasBirthDaySoon(),
                                 Email = entity.GetEmail(),
                                 Phonenumber = entity.GetPhoneNumber()
                             });
         }
-
         public async Task<IEnumerable<ListUserDto>> GetAllAsync()
         {
             using var connection = new NpgsqlConnection
@@ -63,7 +63,8 @@ namespace matelso.contactmanager.Repository
                                 user.Lastname,
                                 user.Displayname,
                                 user.Birthdate,
-                                user.Creationtimestamp,
+                                user.CreationTimestamp,
+                                user.LastChangeTimestamp,
                                 user.Email,
                                 user.Phonenumber);
                 if (user.Birthdate != null)
@@ -97,7 +98,8 @@ namespace matelso.contactmanager.Repository
                                 Contact.Lastname,
                                 Contact.Displayname,
                                 Contact.Birthdate,
-                                Contact.Creationtimestamp,
+                                Contact.CreationTimestamp,
+                                Contact.LastChangeTimestamp,
                                 Contact.Email,
                                 Contact.Phonenumber);
 
@@ -113,9 +115,31 @@ namespace matelso.contactmanager.Repository
             return ReturnedContact;
         }
 
-        public Task UpdateAsync(Contact entity)
+        public async Task UpdateAsync(Contact entity)
         {
-            throw new NotImplementedException();
+            using var connection = new NpgsqlConnection
+          (_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+
+            var affected =
+                await connection.ExecuteAsync
+                    (@"UPDATE Contact SET Salutation = @Salutation, 
+                      Firstname =  @Firstname, Lastname = @Lastname , Displayname = @Displayname,
+                      Birthdate = @Birthdate, NotifyHasBirthdaySoon= @NotifyHasBirthdaySoon, Email = @Email,Phonenumber = @Phonenumber,
+                      LastChangeTimestamp = @LastChangeTimestamp
+                      WHERE Id = @Id",
+                            new
+                            {
+                                Salutation = entity.GetSalutation(),
+                                FirstName = entity.GetFirstName(),
+                                Lastname = entity.GetLastName(),
+                                Displayname = entity.GetDisplayName(),
+                                Birthdate = entity.GetBirthDate(),
+                                NotifyHasBirthdaySoon = entity.GetNotifyHasBirthDaySoon(),
+                                Email = entity.GetEmail(),
+                                Phonenumber = entity.GetPhoneNumber(),
+                                LastChangeTimeStamp = DateTime.Now,
+                                id = entity.Id,
+                            });
         }
 
         public Task RemoveAsync(Guid id)

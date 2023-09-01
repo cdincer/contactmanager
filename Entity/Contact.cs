@@ -113,10 +113,10 @@ namespace matelso.contactmanager
         , string? phoneNumber = null)
         {
             Id = Guid.NewGuid();
-            SetSalutation(salutation);
-            SetFirstName(firstname);
+            _salutation = salutation;
+            _firstname = firstname;
             _lastname = lastname;
-            _displayname = displayname ?? firstname + " " + lastname;
+            _displayname = string.IsNullOrWhiteSpace(displayname) ? firstname + " " + lastname : displayname;
             _birthddate = birthdate;
             _creationTimeStamp = DateTime.Now;
             _lastChangeTimeStamp = DateTime.Now;
