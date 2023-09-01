@@ -37,7 +37,6 @@ namespace matelso.contactmanager.Dto
 )
     {
         public bool notifyhasbirthdaysoon { get; set; }
-
     };
 
 }

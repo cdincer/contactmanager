@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Reflection;
 using Dapper;
 using matelso.contactmanager.Dto;
 using matelso.contactmanager.Entity;
@@ -81,7 +83,6 @@ namespace matelso.contactmanager.Repository
 
             return ReturnedContracts;
         }
-
         public async Task<ListUserDto> GetAsync(Guid id)
         {
             using var connection = new NpgsqlConnection
@@ -112,14 +113,16 @@ namespace matelso.contactmanager.Repository
             return ReturnedContact;
         }
 
+        public Task UpdateAsync(Contact entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task RemoveAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Contact entity)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

@@ -28,7 +28,6 @@ public class ContactController : ControllerBase
             userDto.Birthddate,
             userDto.PhoneNumber);
         await _repository.CreateAsync(newContact);
-        Console.WriteLine("Item Created");
     }
 
     [HttpGet]
