@@ -58,24 +58,24 @@ namespace matelso.contactmanager.Repository
             foreach (RetrieveUserDto user in Contacts)
             {
                 ListUserDto Contact = new(user.Id,
-                                user.salutation,
-                                user.firstname,
-                                user.lastname,
-                                user.displayname,
-                                user.birthdate,
-                                user.creationtimestamp,
-                                user.email,
-                                user.phonenumber);
-                if (user.birthdate != null)
+                                user.Salutation,
+                                user.Firstname,
+                                user.Lastname,
+                                user.Displayname,
+                                user.Birthdate,
+                                user.Creationtimestamp,
+                                user.Email,
+                                user.Phonenumber);
+                if (user.Birthdate != null)
                 {
-                    DateTime UserBirthDate = user.birthdate;
+                    DateTime UserBirthDate = user.Birthdate;
                     bool birthDayCalc = false;
                     DateTime checkBirthDayEndDate = DateTime.Now.AddDays(14);
                     if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
                     {
                         birthDayCalc = true;
                     }
-                    Contact.notifyhasbirthdaysoon = birthDayCalc;
+                    Contact.Notifyhasbirthdaysoon = birthDayCalc;
                 }
                 ReturnedContracts.Add(Contact);
 
@@ -92,23 +92,23 @@ namespace matelso.contactmanager.Repository
                     ("SELECT * FROM Contact where Id = @Id", new { Id = id });
 
             ListUserDto ReturnedContact = new(Contact.Id,
-                                Contact.salutation,
-                                Contact.firstname,
-                                Contact.lastname,
-                                Contact.displayname,
-                                Contact.birthdate,
-                                Contact.creationtimestamp,
-                                Contact.email,
-                                Contact.phonenumber);
+                                Contact.Salutation,
+                                Contact.Firstname,
+                                Contact.Lastname,
+                                Contact.Displayname,
+                                Contact.Birthdate,
+                                Contact.Creationtimestamp,
+                                Contact.Email,
+                                Contact.Phonenumber);
 
-            DateTime UserBirthDate = Contact.birthdate;
+            DateTime UserBirthDate = Contact.Birthdate;
             bool birthDayCalc = false;
             DateTime checkBirthDayEndDate = DateTime.Now.AddDays(14);
             if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
             {
                 birthDayCalc = true;
             }
-            ReturnedContact.notifyhasbirthdaysoon = birthDayCalc;
+            ReturnedContact.Notifyhasbirthdaysoon = birthDayCalc;
 
             return ReturnedContact;
         }

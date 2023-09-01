@@ -11,37 +11,33 @@ namespace matelso.contactmanager.Dto
      DateTime? Birthddate,
      string? PhoneNumber
  );
-    /*
-     [Required]
-            [MinLength(2, ErrorMessage = "Salutation field must be longer than 2 characters long")]
-    */
+
     public record RetrieveUserDto(
     Guid Id,
-    string salutation,
-    string firstname,
-    string lastname,
-    string displayname,
-    DateTime birthdate,
-    DateTime creationtimestamp,
-    bool notifyhasbirthdaysoon,
-    string email,
-    string phonenumber
+    string Salutation,
+    string Firstname,
+    string Lastname,
+    string Displayname,
+    DateTime Birthdate,
+    DateTime Creationtimestamp,
+    bool Notifyhasbirthdaysoon,
+    string Email,
+    string Phonenumber
 );
-
 
     public record ListUserDto(
     Guid Id,
-    string salutation,
-    string firstname,
-    string lastname,
-    string displayname,
-    DateTime birthdate,
-    DateTime creationtimestamp,
-    string email,
-    string phonenumber
+    string Salutation,
+    string Firstname,
+    string Lastname,
+    string Displayname,
+    DateTime Birthdate,
+    DateTime Creationtimestamp,
+    string Email,
+    string Phonenumber
 )
     {
-        public bool notifyhasbirthdaysoon { get; set; }
+        public bool Notifyhasbirthdaysoon { get; set; }
     };
 
 }
