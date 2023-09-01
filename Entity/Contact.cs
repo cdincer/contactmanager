@@ -8,26 +8,16 @@ namespace matelso.contactmanager
     {
         #region Property Definitions
         public Guid Id { get; set; }
-        [Required]
-        [MinLength(2, ErrorMessage = "Salutation field must be longer than 2 characters long")]
         private string _salutation;
-        [Required]
-        [MinLength(2, ErrorMessage = "The first name field must be longer than 2 characters long")]
         private string _firstname;
-        [Required]
-        [MinLength(2, ErrorMessage = "The last name field must be longer than 2 characters long")]
         private string _lastname;
         private string? _displayname;
         private DateTime? _birthddate;
         private readonly DateTime _creationTimeStamp;
         private readonly DateTime _lastChangeTimeStamp;
         private bool _notifyHasBirthdaySoon;//14 days limit.
-        [Required]
-        [EmailAddress]
         private string _email;//Must be unique
         private string? _phoneNumber;
-
-
         #endregion
 
         #region Getter/Setter Area
@@ -123,8 +113,8 @@ namespace matelso.contactmanager
         , string? phoneNumber = null)
         {
             Id = Guid.NewGuid();
-            _salutation = salutation;
-            _firstname = firstname;
+            SetSalutation(salutation);
+            SetFirstName(firstname);
             _lastname = lastname;
             _displayname = displayname ?? firstname + " " + lastname;
             _birthddate = birthdate;
