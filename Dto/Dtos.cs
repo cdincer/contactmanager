@@ -8,7 +8,7 @@ namespace matelso.contactmanager.Dto
      [Required, MinLength(2, ErrorMessage = "Lastname field must be longer than 2 characters long")] string Lastname,
      [EmailAddress, Required] string Email,
      string? Displayname,
-     DateTime? Birthddate,
+     DateTime? Birthdate,
      string? PhoneNumber
  );
 

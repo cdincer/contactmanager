@@ -37,7 +37,7 @@ I picked this instead of setting up a BackgroundWorker operation to keep everyth
   "lastname": "TestLastName1",
   "email": "working@email.com",
   "displayname": "TestingDisplayName1",
-  "birthddate": "1999-09-14T10:47:24.285Z",
+  "birthdate": "1999-09-14T10:47:24.285Z",
   "phoneNumber": ""
 }
 
@@ -48,6 +48,6 @@ I picked this instead of setting up a BackgroundWorker operation to keep everyth
   "lastname": "TestLastName2",
   "email": "working2@email.com",
   "displayname": "",
-  "birthddate": "1998-09-12T10:47:24.285Z",
+  "birthdate": "1998-09-12T10:47:24.285Z",
   "phoneNumber": "02124669900"
 }

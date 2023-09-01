@@ -25,7 +25,7 @@ public class ContactController : ControllerBase
             userDto.Lastname,
             userDto.Email,
             userDto.Displayname,
-            userDto.Birthddate,
+            userDto.Birthdate,
             userDto.PhoneNumber);
         return await _repository.CreateAsync(newContact);
     }
