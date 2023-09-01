@@ -21,10 +21,6 @@ namespace matelso.contactmanager
         #endregion
 
         #region Getter/Setter Area
-        public Guid GetId()
-        {
-            return Id;
-        }
         public string GetSalutation()
         {
             return _salutation;

@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = new ConfigurationBuilder()
                             .AddJsonFile("appsettings.json")
                             .Build();
-string wehat = configuration["DatabaseSettings:ConnectionString"];
-builder.Services.MigrateDatabase(wehat);
+string PostGreConnectionString = configuration["DatabaseSettings:ConnectionString"];
+builder.Services.MigrateDatabase(PostGreConnectionString);
 builder.Services.AddScoped<IRepository, ContactRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

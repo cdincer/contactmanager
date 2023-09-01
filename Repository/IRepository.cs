@@ -5,11 +5,11 @@ namespace matelso.contactmanager.Repository
 {
     public interface IRepository
     {
-        Task CreateAsync(Contact entity);
+        Task<bool> CreateAsync(Contact entity);
         Task<IEnumerable<ListUserDto>> GetAllAsync();
         Task<ListUserDto> GetAsync(Guid id);
-        Task RemoveAsync(Guid id);
-        Task UpdateAsync(Contact entity);
+        Task<bool> RemoveAsync(Guid id);
+        Task<bool> UpdateAsync(Contact entity);
     }
 
 }

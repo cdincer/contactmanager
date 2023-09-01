@@ -13,13 +13,14 @@ namespace matelso.contactmanager.Repository
     public class ContactRepository : IRepository
     {
         private readonly IConfiguration _configuration;
+        private readonly int UserBirthDateCheck = 14;
 
         public ContactRepository(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-        public async Task CreateAsync(Contact entity)
+        public async Task<bool> CreateAsync(Contact entity)
         {
             using var connection = new NpgsqlConnection
                (_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
@@ -46,6 +47,11 @@ namespace matelso.contactmanager.Repository
                                 Email = entity.GetEmail(),
                                 Phonenumber = entity.GetPhoneNumber()
                             });
+
+            if (affected == 0)
+                return false;
+
+            return true;
         }
         public async Task<IEnumerable<ListUserDto>> GetAllAsync()
         {
@@ -73,7 +79,7 @@ namespace matelso.contactmanager.Repository
                 {
                     DateTime UserBirthDate = user.Birthdate;
                     bool birthDayCalc = false;
-                    DateTime checkBirthDayEndDate = DateTime.Now.AddDays(14);
+                    DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
                     if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
                     {
                         birthDayCalc = true;
@@ -107,7 +113,7 @@ namespace matelso.contactmanager.Repository
 
             DateTime UserBirthDate = Contact.Birthdate;
             bool birthDayCalc = false;
-            DateTime checkBirthDayEndDate = DateTime.Now.AddDays(14);
+            DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
             if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
             {
                 birthDayCalc = true;
@@ -117,7 +123,7 @@ namespace matelso.contactmanager.Repository
             return ReturnedContact;
         }
 
-        public async Task UpdateAsync(Contact entity)
+        public async Task<bool> UpdateAsync(Contact entity)
         {
             using var connection = new NpgsqlConnection
           (_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
@@ -142,11 +148,24 @@ namespace matelso.contactmanager.Repository
                                 LastChangeTimeStamp = DateTime.Now,
                                 id = entity.Id,
                             });
+
+            if (affected == 0)
+                return false;
+
+            return true;
         }
 
-        public Task RemoveAsync(Guid id)
+        public async Task<bool> RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+
+            var affected = await connection.ExecuteAsync("DELETE FROM Contact WHERE Id = @Id",
+                new { Id = id });
+
+            if (affected == 0)
+                return false;
+
+            return true;
         }
 
 

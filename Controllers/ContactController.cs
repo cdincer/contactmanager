@@ -17,7 +17,7 @@ public class ContactController : ControllerBase
     }
 
     [HttpPost]
-    public async Task Post(CreateUserDto userDto)
+    public async Task<bool> Post(CreateUserDto userDto)
     {
         Contact newContact = new(
             userDto.Salutation,
@@ -27,7 +27,7 @@ public class ContactController : ControllerBase
             userDto.Displayname,
             userDto.Birthddate,
             userDto.PhoneNumber);
-        await _repository.CreateAsync(newContact);
+        return await _repository.CreateAsync(newContact);
     }
 
     [HttpGet]
@@ -43,7 +43,7 @@ public class ContactController : ControllerBase
     }
 
     [HttpPut]
-    public async Task UpdateUser(UpdateUserDto userDto)
+    public async Task<bool> UpdateUser(UpdateUserDto userDto)
     {
         Contact newContact = new(
          userDto.Salutation,
@@ -54,9 +54,14 @@ public class ContactController : ControllerBase
          userDto.Birthdate,
          userDto.Phonenumber);
         newContact.Id = userDto.Id;
-        await _repository.UpdateAsync(newContact);
+        return await _repository.UpdateAsync(newContact);
     }
 
+    [HttpDelete]
+    public async Task<bool> DeleteUser(Guid guid)
+    {
+        return await _repository.RemoveAsync(guid);
+    }
 
 
 }
