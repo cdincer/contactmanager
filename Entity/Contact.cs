@@ -6,6 +6,10 @@ namespace matelso.contactmanager
 {
     public class Contact : IEntity
     {
+
+        private readonly DateTime NullCheck = DateTime.Parse("0001-01-01T00:00:00");
+        private readonly int UserBirthDateCheck = 14;
+
         #region Property Definitions
         public Guid Id { get; set; }
         private string _salutation;
@@ -117,10 +121,10 @@ namespace matelso.contactmanager
             _creationTimeStamp = DateTime.Now;
             _lastChangeTimeStamp = DateTime.Now;
 
-            if (birthdate != null)
+            if (birthdate != NullCheck)
             {
                 bool birthDayCalc = false;
-                DateTime checkBirthDayEndDate = DateTime.Now.AddDays(14); ;
+                DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck); ;
                 if (birthdate >= DateTime.Now && birthdate <= checkBirthDayEndDate)
                 {
                     birthDayCalc = true;

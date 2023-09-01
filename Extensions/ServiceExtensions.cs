@@ -36,24 +36,27 @@ namespace matelso.contactmanager.Extensions
                                                                 PRIMARY KEY (Id))";
                 command.ExecuteNonQuery();
                 Console.WriteLine("Table creation is succesful");
+
                 Guid TrialGuid = Guid.NewGuid();
                 command.CommandText =
                 "INSERT INTO Contact"
                 + "(Id, Salutation, Firstname, Lastname, Displayname, "
                 + "Birthdate, CreationTimestamp, LastChangeTimestamp, NotifyHasBirthdaySoon, Email, Phonenumber)"
-                + $"VALUES ('{TrialGuid}','Mr', 'Can' , 'Dincer' ,'','2016-06-22 19:10:25-07',"
+                + $"VALUES ('{TrialGuid}','Mr', 'Can' , 'Dincer' ,'','2016-09-12T19:10:25',"
                 + $"'{DateTime.Now}','{DateTime.Now}', true,'trialrun1@email.com','02123445566')";
                 command.ExecuteNonQuery();
                 Console.WriteLine("First test user created");
+
                 TrialGuid = Guid.NewGuid();
                 command.CommandText =
                 "INSERT INTO Contact"
                 + "(Id, Salutation, Firstname, Lastname, Displayname, "
                 + "Birthdate, CreationTimestamp, LastChangeTimestamp, NotifyHasBirthdaySoon, Email, Phonenumber)"
-                + $"VALUES ('{TrialGuid}','Mr', 'Cem' , 'Dicer' ,'','2014-06-22 19:10:25-07',"
+                + $"VALUES ('{TrialGuid}','Mr', 'Cem' , 'Dicer' ,'','2016-09-16T19:10:25',"
                 + $"'{DateTime.Now}', '{DateTime.Now}', true,'trialrun2@email.com','02123558899')";
                 command.ExecuteNonQuery();
                 Console.WriteLine("Second test user created");
+
                 command.CommandText =
                "INSERT INTO Contact"
                + "(Id, Salutation, Firstname, Lastname, Displayname, "

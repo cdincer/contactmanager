@@ -14,6 +14,7 @@ namespace matelso.contactmanager.Repository
     {
         private readonly IConfiguration _configuration;
         private readonly int UserBirthDateCheck = 14;
+        private readonly DateTime NullCheck = DateTime.Parse("0001-01-01T00:00:00");
 
         public ContactRepository(IConfiguration configuration)
         {
@@ -75,9 +76,10 @@ namespace matelso.contactmanager.Repository
                                 user.LastChangeTimestamp,
                                 user.Email,
                                 user.Phonenumber);
-                if (user.Birthdate != null)
+                if (user.Birthdate != NullCheck)
                 {
-                    DateTime UserBirthDate = user.Birthdate;
+                    int YearAdjustment = DateTime.Now.Year - user.Birthdate.Year;
+                    DateTime UserBirthDate = user.Birthdate.AddYears(YearAdjustment);
                     bool birthDayCalc = false;
                     DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
                     if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
@@ -114,9 +116,15 @@ namespace matelso.contactmanager.Repository
             DateTime UserBirthDate = Contact.Birthdate;
             bool birthDayCalc = false;
             DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
-            if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
+            if (UserBirthDate != NullCheck)
             {
-                birthDayCalc = true;
+                int YearAdjustment = DateTime.Now.Year - UserBirthDate.Year;
+                UserBirthDate = UserBirthDate.AddYears(YearAdjustment);
+                checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
+                if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
+                {
+                    birthDayCalc = true;
+                }
             }
             ReturnedContact.Notifyhasbirthdaysoon = birthDayCalc;
 
