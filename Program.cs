@@ -1,4 +1,3 @@
-using matelso.contactmanager.Entity;
 using matelso.contactmanager.Repository;
 using matelso.contactmanager.Extensions;
 

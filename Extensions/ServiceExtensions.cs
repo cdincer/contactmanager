@@ -2,7 +2,7 @@ using Npgsql;
 
 namespace matelso.contactmanager.Extensions
 {
-    public static class HostExtensions
+    public static class ServiceExtensions
     {
         public static IServiceCollection MigrateDatabase(this IServiceCollection services, string wehat)
         {
