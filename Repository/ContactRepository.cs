@@ -76,24 +76,15 @@ namespace matelso.contactmanager.Repository
                                 user.LastChangeTimestamp,
                                 user.Email,
                                 user.Phonenumber);
-                if (user.Birthdate != NullCheck)
-                {
-                    int YearAdjustment = DateTime.Now.Year - user.Birthdate.Year;
-                    DateTime UserBirthDate = user.Birthdate.AddYears(YearAdjustment);
-                    bool birthDayCalc = false;
-                    DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
-                    if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
-                    {
-                        birthDayCalc = true;
-                    }
-                    Contact.Notifyhasbirthdaysoon = birthDayCalc;
-                }
+
+                Contact.Notifyhasbirthdaysoon = NotifyBirthDateCheck(user.Birthdate); ;
                 ReturnedContracts.Add(Contact);
 
             }
 
             return ReturnedContracts;
         }
+
         public async Task<ListUserDto> GetAsync(Guid id)
         {
             using var connection = new NpgsqlConnection
@@ -114,19 +105,8 @@ namespace matelso.contactmanager.Repository
                                 Contact.Phonenumber);
 
             DateTime UserBirthDate = Contact.Birthdate;
-            bool birthDayCalc = false;
-            DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
-            if (UserBirthDate != NullCheck)
-            {
-                int YearAdjustment = DateTime.Now.Year - UserBirthDate.Year;
-                UserBirthDate = UserBirthDate.AddYears(YearAdjustment);
-                checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
-                if (UserBirthDate >= DateTime.Now && UserBirthDate <= checkBirthDayEndDate)
-                {
-                    birthDayCalc = true;
-                }
-            }
-            ReturnedContact.Notifyhasbirthdaysoon = birthDayCalc;
+
+            ReturnedContact.Notifyhasbirthdaysoon = NotifyBirthDateCheck(UserBirthDate);
 
             return ReturnedContact;
         }
@@ -176,6 +156,23 @@ namespace matelso.contactmanager.Repository
             return true;
         }
 
+        private bool NotifyBirthDateCheck(DateTime UserBirthDate)
+        {
+            bool birthDayCalc = false;
+
+            if (UserBirthDate != NullCheck)
+            {
+                int YearAdjustment = DateTime.Now.Year - UserBirthDate.Year;
+                DateTime CurrBirthDate = UserBirthDate.AddYears(YearAdjustment);
+                DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
+                if (CurrBirthDate >= DateTime.Now && CurrBirthDate <= checkBirthDayEndDate)
+                {
+                    birthDayCalc = true;
+                }
+
+            }
+            return birthDayCalc;
+        }
 
     }
 }
