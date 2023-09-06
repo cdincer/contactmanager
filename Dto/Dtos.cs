@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace matelso.contactmanager.Dto
+namespace contactmanager.Dto
 {
     public record CreateUserDto(
      [Required, MinLength(2, ErrorMessage = "Salutation field must be longer than 2 characters long")] string Salutation,

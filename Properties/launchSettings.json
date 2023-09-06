@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "matelso.contactmanager": {
+    "contactmanager": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

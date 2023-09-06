@@ -1,9 +1,9 @@
-using matelso.contactmanager.Dto;
-using matelso.contactmanager.Entity;
-using matelso.contactmanager.Repository;
+using contactmanager.Dto;
+using contactmanager.Entity;
+using contactmanager.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace matelso.contactmanager.Controllers;
+namespace contactmanager.Controllers;
 
 [ApiController]
 [Route("[controller]")]

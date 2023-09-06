@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml;
-using matelso.contactmanager.Entity;
+using contactmanager.Entity;
 
-namespace matelso.contactmanager
+namespace contactmanager
 {
     public class Contact : IEntity
     {

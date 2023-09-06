@@ -1,4 +1,4 @@
-namespace matelso.contactmanager.Entity
+namespace contactmanager.Entity
 {
     public interface IEntity
     {

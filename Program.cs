@@ -1,5 +1,5 @@
-using matelso.contactmanager.Repository;
-using matelso.contactmanager.Extensions;
+using contactmanager.Repository;
+using contactmanager.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,11 +2,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Reflection;
 using Dapper;
-using matelso.contactmanager.Dto;
-using matelso.contactmanager.Entity;
+using contactmanager.Dto;
+using contactmanager.Entity;
 using Npgsql;
 
-namespace matelso.contactmanager.Repository
+namespace contactmanager.Repository
 {
 
 

@@ -1,7 +1,7 @@
-using matelso.contactmanager.Dto;
-using matelso.contactmanager.Entity;
+using contactmanager.Dto;
+using contactmanager.Entity;
 
-namespace matelso.contactmanager.Repository
+namespace contactmanager.Repository
 {
     public interface IRepository
     {

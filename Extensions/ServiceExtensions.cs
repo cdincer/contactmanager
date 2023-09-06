@@ -1,6 +1,6 @@
 using Npgsql;
 
-namespace matelso.contactmanager.Extensions
+namespace contactmanager.Extensions
 {
     public static class ServiceExtensions
     {
