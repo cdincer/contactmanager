@@ -78,14 +78,13 @@ namespace matelso.contactmanager
             bool birthDayCalc = false;
             if (_birthddate != null)
             {
-
-                DateTime checkBirthDayEndDate = DateTime.Now;
-                checkBirthDayEndDate.AddDays(14);
-                if (_birthddate >= DateTime.Now && _birthddate <= checkBirthDayEndDate)
+                int YearAdjustment = DateTime.Now.Year - _birthddate.Value.Year;
+                DateTime CurrBirthDate = _birthddate.Value.AddYears(YearAdjustment);
+                DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
+                if (CurrBirthDate >= DateTime.Now && CurrBirthDate <= checkBirthDayEndDate)
                 {
                     birthDayCalc = true;
                 }
-                _notifyHasBirthdaySoon = birthDayCalc;
             }
             return birthDayCalc;
         }
