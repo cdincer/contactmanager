@@ -10,7 +10,7 @@ namespace contactmanager
         private readonly DateTime NullCheck = DateTime.Parse("0001-01-01T00:00:00");
         private readonly int UserBirthDateCheck = 14;
 
-        #region Property Definitions
+        #region Field Area
         public Guid Id { get; set; }
         private string _salutation;
         private string _firstname;
@@ -24,87 +24,68 @@ namespace contactmanager
         private string? _phoneNumber;
         #endregion
 
-        #region Getter/Setter Area
-        public string GetSalutation()
+        #region Property Area
+        public string Salutation
         {
-            return _salutation;
+            get { return _salutation; }
+            set { _salutation = value; }
         }
-        public void SetSalutation(string Salutation)
+        public string Firstname
         {
-            _salutation = Salutation;
+            get { return _firstname; }
+            set { _firstname = value; }
         }
-        public string GetFirstName()
+        public string Lastname
         {
-            return _firstname;
+            get { return _lastname; }
+            set { _lastname = value; }
         }
-        public void SetFirstName(string FirstName)
+        public string? DisplayName
         {
-            _firstname = FirstName;
+            get { return _displayname; }
+            set { _displayname = value; }
         }
-        public string GetLastName()
+        public DateTime? BirthDate
         {
-            return _lastname;
+            get { return _birthddate; }
+            set { _birthddate = value; }
         }
-        public void SetLastName(string LastName)
+        public DateTime CreationTimeStamp
         {
-            _lastname = LastName;
+            get { return _creationTimeStamp; }
         }
-        public string? GetDisplayName()
+        public DateTime LastChangeTimestamp
         {
-            return _displayname;
+            get { return _lastChangeTimeStamp; }
         }
-        public void SetDisplayName(string DisplayName)
+        public bool NotifyHasBirthDaySoon
         {
-            _displayname = DisplayName;
-        }
-        public DateTime? GetBirthDate()
-        {
-            return _birthddate;
-        }
-        public void SetBirthDate(DateTime? BirthDate)
-        {
-            _birthddate = BirthDate;
-        }
-        public DateTime GetCreationTimeStamp()
-        {
-            return _creationTimeStamp;
-        }
-        public DateTime GetLastChangeTimestamp()
-        {
-            return _lastChangeTimeStamp;
-        }
-        public bool GetNotifyHasBirthDaySoon()
-        {
-            bool birthDayCalc = false;
-            if (_birthddate != null)
+            get
             {
-                int YearAdjustment = DateTime.Now.Year - _birthddate.Value.Year;
-                DateTime CurrBirthDate = _birthddate.Value.AddYears(YearAdjustment);
-                DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
-                if (CurrBirthDate >= DateTime.Now && CurrBirthDate <= checkBirthDayEndDate)
+                bool birthDayCalc = false;
+                if (_birthddate != null)
                 {
-                    birthDayCalc = true;
+                    int YearAdjustment = DateTime.Now.Year - _birthddate.Value.Year;
+                    DateTime CurrBirthDate = _birthddate.Value.AddYears(YearAdjustment);
+                    DateTime checkBirthDayEndDate = DateTime.Now.AddDays(UserBirthDateCheck);
+                    if (CurrBirthDate >= DateTime.Now && CurrBirthDate <= checkBirthDayEndDate)
+                    {
+                        birthDayCalc = true;
+                    }
                 }
+                return birthDayCalc;
             }
-            return birthDayCalc;
         }
-        public void SetEmail(string Email)
+        public string Email
         {
-            _email = Email;
+            get { return _email; }
+            set { _email = value; }
         }
-        public string GetEmail()
+        public string PhoneNumber
         {
-            return _email;
+            get { return _phoneNumber; }
+            set { _phoneNumber = value; }
         }
-        public void SetPhoneNumber(string PhoneNumber)
-        {
-            _phoneNumber = PhoneNumber;
-        }
-        public string? GetPhoneNumber()
-        {
-            return _phoneNumber;
-        }
-
         #endregion
 
         public Contact(string salutation, string firstname, string lastname, string email,

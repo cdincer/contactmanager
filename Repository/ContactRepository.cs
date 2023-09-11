@@ -37,16 +37,16 @@ namespace contactmanager.Repository
                             new
                             {
                                 id = entity.Id,
-                                Salutation = entity.GetSalutation(),
-                                FirstName = entity.GetFirstName(),
-                                Lastname = entity.GetLastName(),
-                                Displayname = entity.GetDisplayName(),
-                                Birthdate = entity.GetBirthDate(),
-                                CreationTimestamp = entity.GetCreationTimeStamp(),
-                                LastChangeTimestamp = entity.GetLastChangeTimestamp(),
-                                NotifyHasBirthdaySoon = entity.GetNotifyHasBirthDaySoon(),
-                                Email = entity.GetEmail(),
-                                Phonenumber = entity.GetPhoneNumber()
+                                Salutation = entity.Salutation,
+                                FirstName = entity.Firstname,
+                                Lastname = entity.Lastname,
+                                Displayname = entity.DisplayName,
+                                Birthdate = entity.BirthDate,
+                                CreationTimestamp = entity.CreationTimeStamp,
+                                LastChangeTimestamp = entity.LastChangeTimestamp,
+                                NotifyHasBirthdaySoon = entity.NotifyHasBirthDaySoon,
+                                Email = entity.Email,
+                                Phonenumber = entity.PhoneNumber
                             });
 
             if (affected == 0)
@@ -125,15 +125,16 @@ namespace contactmanager.Repository
                     WHERE Id = @Id",
                             new
                             {
-                                Salutation = entity.GetSalutation(),
-                                FirstName = entity.GetFirstName(),
-                                Lastname = entity.GetLastName(),
-                                Displayname = entity.GetDisplayName(),
-                                Birthdate = entity.GetBirthDate(),
-                                NotifyHasBirthdaySoon = entity.GetNotifyHasBirthDaySoon(),
-                                Email = entity.GetEmail(),
-                                Phonenumber = entity.GetPhoneNumber(),
-                                LastChangeTimeStamp = DateTime.Now,
+                                Salutation = entity.Salutation,
+                                FirstName = entity.Firstname,
+                                Lastname = entity.Lastname,
+                                Displayname = entity.DisplayName,
+                                Birthdate = entity.BirthDate,
+                                CreationTimestamp = entity.CreationTimeStamp,
+                                NotifyHasBirthdaySoon = entity.NotifyHasBirthDaySoon,
+                                Email = entity.Email,
+                                Phonenumber = entity.PhoneNumber,
+                                LastChangeTimestamp = DateTime.Now,
                                 id = entity.Id,
                             });
 
